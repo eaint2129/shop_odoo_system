@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="menu_shop_root"
+              name="Shop"
+              sequence="1"/>
+    <menuitem id="menu_shop_management"
+              name="Shop Management"
+              parent="menu_shop_root"
+              sequence="1"/>
+    <menuitem id="menu_shop_item"
+              name="Shop Item"
+              parent="menu_shop_management"
+              action="action_shop_item"
+              sequence="1"/>
+    <menuitem id="menu_shop_item_tag"
+              name="Shop Item Tag"
+              parent="menu_shop_management"
+              action="action_shop_item_tag"
+              sequence="5"/>
+
+</odoo>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!--before,after, replace, attributes-->
+            <field name="payment_term_id" position="after">
+                <field name="custom_remark"/>
+            </field>
+<!--            <xpath expr="//field[@name='payment_term_id']" postion="after">-->
+<!--                <field name="custom_remark"/>-->
+<!--            </xpath>-->
+            <xpath expr="//field[@name='payment_term_id']" position="attributes">
+                <attribute name="string">Payment Methods</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="sale_order_tree_inherit" model="ir.ui.view">
+        <field name="name">sale.order.tree.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_tree"/>
+        <field name="arch" type="xml">
+            <!--before,after, replace, attributes-->
+            <field name="user_id" position="before">
+                <!--show,hide-->
+                <field name="custom_remark" optional="hide"/>
+            </field>
+        </field>
+    </record>
+</odoo>
