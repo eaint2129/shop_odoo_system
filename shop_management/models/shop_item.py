@@ -43,6 +43,34 @@ class ShopItem(models.Model):
     def action_sold(self):
         self.state = 'sold'
 
+    def _cron_available_send_email(self):
+        # items = self.env["shop.item"].search(['|',('state','=','available'),('is_available','=',True)])
+        items = self.env["shop.item"].search([('state','=','available')])
+        # self.env['sale.order'].browse(sale.id) <= Browse orm
+        items_qty_get = items.filtered(lambda item: item.quantity > 15)
+        if not items_qty_get:
+            return
+
+        company = self.env.company
+
+        #Login User
+        user = self.env.user
+
+        email_to = company.email or user.email
+
+        if not email_to:
+            return
+
+        rows = "".join(f"<li>{item.name} - stock: {item.quantity} </li>"
+                       for item in items_qty_get)
+        self.env['mail.mail'].create(
+            {
+                "subject":"Shop Available Mail",
+                "email_from":user.email,
+                "email_to":email_to,
+                "body_html":f"<p>The following shop items are availabe: {rows} </p>",
+            }
+        )
 
 class ShopItemTag(models.Model):
     _name = "shop.item.tag"

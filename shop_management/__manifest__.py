@@ -6,8 +6,11 @@
     "depends":['product'],
     "data":[
         'security/ir.model.access.csv',
+        'security/shop_security.xml',
         'views/shop_item_views.xml',
-        'views/shop_menu_views.xml'
+        'views/shop_menu_views.xml',
+        'data/shop_item_tag.xml',
+        'data/shop_cron_data.xml',
     ],
     "installable":True,
     "application":True,

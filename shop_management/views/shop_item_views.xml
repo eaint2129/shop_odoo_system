@@ -38,7 +38,7 @@
                             <field name="number" string="Item Reference"/>
                             <field name="quantity"/>
                             <field name="currency_id"/>
-                            <field name="tag_ids" widget="many2many_tags"/>
+                            <field name="tag_ids" widget="many2many_tags" groups="shop_management.group_shop_user,shop_management.group_shop_manager"/>
                         </group>
                         <group>
                             <!--    readonly, invisible, string, default,required => 1 or 0 , True or False-->

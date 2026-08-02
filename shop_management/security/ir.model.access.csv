@@ -1,4 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_shop_item_user,access_shop_item_user,shop_management.model_shop_item,,1,1,1,1
+access_shop_item_manager,access_shop_item_manager,shop_management.model_shop_item,shop_management.group_shop_manager,1,1,1,1
+access_shop_item_user,access_shop_item_user,shop_management.model_shop_item,shop_management.group_shop_user,1,1,1,0
 access_shop_item_tag_user,access_shop_item_tag_user,shop_management.model_shop_item_tag,,1,1,1,1
 access_shop_item_line_user,access_shop_item_line_user,shop_management.model_shop_item_line,,1,1,1,1

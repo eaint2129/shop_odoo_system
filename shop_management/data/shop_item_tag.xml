@@ -1,0 +1,16 @@
+<odoo>
+    <data noupdate="1">
+        <record id="item_tag_hot_sale" model="shop.item.tag">
+            <field name="name">Hot Sale</field>
+            <field name="color">1</field>
+        </record>
+        <record id="item_tag_arrival" model="shop.item.tag">
+            <field name="name">New Arrival</field>
+            <field name="color">2</field>
+        </record>
+        <record id="item_tag_clearance" model="shop.item.tag">
+            <field name="name">Discount</field>
+            <field name="color">3</field>
+        </record>
+    </data>
+</odoo>
