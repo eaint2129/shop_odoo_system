@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_report_shop_item" model="ir.actions.report">
+        <field name="name">Shop Item PDF Report</field>
+        <field name="model">shop.item</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">shop_management.report_shop_item_document</field>
+        <field name="report_file">shop_management.report_shop_item_document</field>
+        <field name="print_report_name">'Shop Item - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_shop_item"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_shop_item_document">
+        <t t-call="web.html_container">
+            <t t-set="company" t-value="res_company"/>
+            <!-- <t t-set="number" t-value="1"/> number = 1-->
+            <t t-foreach="docs" t-as="o">
+                <!--Header-->
+                <div class="header">
+                    <div class="d-flex align-items-center border-bottom pb-2">
+                        <img t-if="company.logo"
+                             t-att-src="image_data_uri(company.logo)"
+                             alt="Company Logo"/>
+                        <h3 class="mb-0 ms-3" t-esc="company.name"/>
+                    </div>
+                </div>
+
+                <!-- Body-->
+                <div class="article"
+                     t-att-data-oe-model="o._name"
+                     t-att-data-oe-id="o.id"
+                     t-att-data-oe-lang="o.env.context.get('lang')"
+                >
+                    <style>
+                        .shop_table {
+                            width:100%;
+                            border-collapse:collapse;
+                        }
+                        .shop_table tr {
+                            height:44px;
+                        }
+                        .shop_table {
+                            padding:10px 12px;
+                            vertical-align:middle;
+                        }
+                    </style>
+                    <div class="page">
+                        <h2>Shop Item Report</h2>
+                        <table class="shop_table">
+                            <tr>
+                                <th style="width:30%">Item</th>
+                                <td><span t-field="o.name"/></td>
+                            </tr>
+                            <tr>
+                                <th style="width:30%">Reference</th>
+                                <td><span t-field="o.number"/></td>
+                            </tr>
+                            <tr>
+                                <th style="width:30%">State</th>
+                                <td><span t-field="o.state"/></td>
+                            </tr>
+                            <tr>
+                                <th style="width:30%">Stock Quantity</th>
+                                <td><span t-field="o.quantity"/></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+            </t>
+        </t>
+    </template>
+</odoo>

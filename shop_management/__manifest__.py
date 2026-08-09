@@ -11,6 +11,7 @@
         'views/shop_menu_views.xml',
         'data/shop_item_tag.xml',
         'data/shop_cron_data.xml',
+        'reports/stop_item_report.xml',
     ],
     "installable":True,
     "application":True,

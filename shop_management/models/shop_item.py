@@ -70,7 +70,7 @@ class ShopItem(models.Model):
                 "email_to":email_to,
                 "body_html":f"<p>The following shop items are availabe: {rows} </p>",
             }
-        )
+        ).send()
 
 class ShopItemTag(models.Model):
     _name = "shop.item.tag"
