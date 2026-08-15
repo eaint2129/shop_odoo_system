@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_shop_available_report_wizard_form" model="ir.ui.view">
+        <field name="name">shop.available.report.wizard.form</field>
+        <field name="model">shop.available.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Shop Available Report Wizard">
+                <group>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </group>
+                <footer>
+                    <button name="action_export_excel" string="Print" type="object" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-danger"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_shop_report" model="ir.actions.act_window">
+        <field name="name">Available Report</field>
+        <field name="res_model">shop.available.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_shop_available_report_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_shop_report"
+              name="Reporting"
+              parent="shop_management.menu_shop_root"
+              sequence="20"/>
+    <menuitem id="menu_shop_available_report"
+              name="Available Report"
+              parent="menu_shop_report"
+              sequence="5"
+              action="action_shop_report"
+    />
+</odoo>

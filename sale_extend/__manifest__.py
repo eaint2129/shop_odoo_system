@@ -5,7 +5,8 @@
     "summary":"Extend sales order",
     "depends":['sale'],
     "data":[
-        'views/sale_order_view.xml'
+        'views/sale_order_view.xml',
+        'reports/sale_order_document.xml',
     ],
     "installable":True,
     "application":False,

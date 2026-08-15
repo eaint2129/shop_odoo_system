@@ -35,6 +35,7 @@
                     <group>
                         <group>
 <!--                            <field name="name" required="1"/>-->
+                            <field name="sequence"/>
                             <field name="number" string="Item Reference"/>
                             <field name="quantity"/>
                             <field name="currency_id"/>

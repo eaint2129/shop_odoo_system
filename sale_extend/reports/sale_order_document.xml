@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_saleorder_document_inherit" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@id='informations']" position="inside">
+            <div t-if="doc.custom_remark" class="col">
+                <strong>Custom Remark</strong>
+                <div t-field="doc.custom_remark"/>
+            </div>
+        </xpath>
+    </template>
+</odoo>

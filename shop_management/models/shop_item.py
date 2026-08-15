@@ -8,6 +8,7 @@ class ShopItem(models.Model):
     _description = "Shop Items"
 
     name = fields.Char(string='Name')
+    sequence = fields.Char(string='Sequence')
     number = fields.Integer(string='Item Reference')
     quantity = fields.Float('Stock Quantity')
     is_available = fields.Boolean('Is Available',compute='_compute_available')
@@ -27,6 +28,13 @@ class ShopItem(models.Model):
     #                            string="Tags"
     #                            )
     item_line_ids = fields.One2many(comodel_name='shop.item.line',inverse_name='item_id',string='Lines')
+
+    @api.model_create_multi
+    def create(self,val_list):
+        for vals in val_list:
+            vals['sequence'] = self.env['ir.sequence'].next_by_code('shop.item.cod')
+        res = super().create(val_list)
+        return res
 
     @api.depends('quantity')
     def _compute_available(self):

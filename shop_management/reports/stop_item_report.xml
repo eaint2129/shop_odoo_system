@@ -40,7 +40,7 @@
                         .shop_table tr {
                             height:44px;
                         }
-                        .shop_table {
+                        .shop_table th,td{
                             padding:10px 12px;
                             vertical-align:middle;
                         }
@@ -65,8 +65,45 @@
                                 <td><span t-field="o.quantity"/></td>
                             </tr>
                         </table>
+                        <h3 style="margin-top:15px;">Stock Lines</h3>
+                        <table class="shop_table">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Unit Cost</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="number" t-value="1"/>
+                                <t t-set="total_value" t-value="0"/>
+                                <!--number=1-->
+                                <tr t-foreach="o.item_line_ids" t-as="line">
+                                    <td><span t-esc="number"/></td>
+                                    <td><span t-field="line.product_id"/></td>
+                                    <td><span t-field="line.quantity"/></td>
+                                    <td><span t-field="line.unit_cost"/></td>
+                                    <td><span t-field="line.total_amount"/></td>
+                                    <t t-set="number" t-value="number+1"/>
+                                    <t t-set="total_value" t-value="total_value+line.total_amount"/>
+                                    <!--number=number+1-->
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Total</td>
+                                    <td colspan="3"><span t-esc="total_value"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
+                </div>
+
+                <div class="footer">
+                    <div class="d-flex align-items-center border-top pt-2">
+                        <span>Page <span class="page"/> / <span class="topage"/></span>
+                    </div>
                 </div>
 
             </t>
