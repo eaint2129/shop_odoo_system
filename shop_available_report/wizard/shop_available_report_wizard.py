@@ -22,7 +22,7 @@ class ShopAvailableReportWizard(models.TransientModel):
 
         output = io.BytesIO()
         workbook = xlsxwriter.Workbook(output,
-                                       {"in_memory":True,"stings_to_formulas":False,"string_to_url":False})
+                                       {"in_memory":True,"strings_to_formulas":False,"string_to_urls":False})
         worksheet = workbook.add_worksheet("Available Report")
 
         title_format = workbook.add_format({
@@ -30,11 +30,62 @@ class ShopAvailableReportWizard(models.TransientModel):
             "font_size":16,
             "align":"center",
         })
+        header_format = workbook.add_format({
+            "bold":True,
+            "border":1,
+            "align":"center",
+        })
+        text_format = workbook.add_format({
+            "border": 1,
+        })
+        number_format = workbook.add_format({
+            "border": 1,
+            "num_format": "#,##0.00",
+        })
+        date_format = workbook.add_format({
+            "border": 1,
+            "num_format": "yyyy-mm-dd",
+        })
 
         worksheet.merge_range("A1:F1","Available Report",title_format)
 
+        items = self.env['shop.item'].search([("date",">=",self.start_date),("date","<=",self.end_date),("state","in",("draft","available"))])
+
+        worksheet.write(2,0,"Item Reference",header_format)
+        worksheet.write(2,1,"Item",header_format)
+        worksheet.write(2,2,"Date",header_format)
+        worksheet.write(2,3,"Product",header_format)
+        worksheet.write(2,4,"QTY",header_format)
+        worksheet.write(2,5,"Unit Cost",header_format)
+        worksheet.write(2,6,"Total Amount",header_format)
+        worksheet.write(2,7,"Status",header_format)
+
+        worksheet.set_column("A:C",16)
+        worksheet.set_column("D:D",25)
+        worksheet.set_column("E:H",20)
+
+        row = 3
+        for item in items:
+            for line in item.item_line_ids:
+                if not line.product_id:
+                    continue
+                sequence = "-"
+                if item.sequence:
+                    sequence = item.sequence
+                else:
+                    sequence = "-"
+                worksheet.write(row,0,sequence,text_format)
+                worksheet.write(row,1,item.name or "-",text_format)
+                worksheet.write(row,2,item.date or "",date_format)
+                worksheet.write(row,3,line.product_id.name,text_format)
+                worksheet.write(row,4,line.quantity,number_format)
+                worksheet.write(row,5,line.unit_cost,number_format)
+                worksheet.write(row,6,line.total_amount,number_format)
+                worksheet.write(row,7,"Available" if item.state=='available' else "Draft",number_format)
+                row+=1
+
         workbook.close()
-        filename = ("shop_report"+str(self.start_date)+"_to_"+str(self.end_date))
+        filename = ("shop_report"+str(self.start_date)+"_to_"+str(self.end_date)+".xlsx")
         #short_report_july5_to_july19
 
         excel_data = output.getvalue()
