@@ -7,4 +7,11 @@
             </div>
         </xpath>
     </t>
+    <t t-name="pos_receipt_extend.OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('after-footer')]" position="after">
+            <div class="pos-receipt-center-align pt-3 text-center">
+                You have earned : <t t-esc="order.loyaltyPoints"/> points.
+            </div>
+        </xpath>
+    </t>
 </template>
