@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_shop_item_list_inherit" model="ir.ui.view">
+        <field name="name">shop.item.list.inherit</field>
+        <field name="model">shop.item</field>
+        <field name="inherit_id" ref="shop_management.view_shop_item_list"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='quantity']" position="attributes">
+                <attribute name="widget">shop_stock_badge</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_shop_item_form_inherit" model="ir.ui.view">
+        <field name="name">shop.item.form.inherit</field>
+        <field name="model">shop.item</field>
+        <field name="inherit_id" ref="shop_management.view_shop_item_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet//field[@name='quantity']" position="attributes">
+                <attribute name="widget">shop_stock_badge</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

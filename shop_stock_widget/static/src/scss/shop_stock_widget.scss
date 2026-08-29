@@ -1,0 +1,61 @@
+.o_shop_stock_widget {
+    display:flex;
+    flex-direction: column;
+    gap:4px;
+    min-width:120px;
+    }
+.o_shop_stock_widget_header {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+    }
+.o_shop_stock_widget_status {
+    border-radius: 4px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 4px 6px;
+    white-space: nowrap;
+    }
+.o_shop_stock_widget_value {
+    color: #1f2937;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    }
+.o_shop_stock_widget_bar {
+    background: #e5e5eb;
+    border-radius: 4px;
+    height: 5px;
+    overflow: hidden;
+    }
+.o_shop_stock_widget_bar span {
+    display:block;
+    height:100%;
+    transition: width 120ms ease-in-out;
+    }
+.o_shop_stock_widget_input {
+    max-width:120px;
+    }
+
+.o_shop_stock_widget_ready {
+    .o_shop_stock_widget_status,
+    .o_shop_stock_widget_bar span {
+        background: #15803d;
+        }
+    }
+
+.o_shop_stock_widget_low {
+    .o_shop_stock_widget_status,
+    .o_shop_stock_widget_bar span {
+        background: #b45309;
+        }
+    }
+
+.o_shop_stock_widget_empty {
+    .o_shop_stock_widget_status,
+    .o_shop_stock_widget_bar span {
+        background: #b91c1c;
+        }
+    }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template xml:space="preserver">
+    <t t-name="shop_stock_widget.ShopStockWidget">
+        <div t-attf-class="o_shop_stock_widget o_shop_stock_widget_{{statusClass}}">
+            <div class="o_shop_stock_widget_header">
+                <span class="o_shop_stock_widget_status" t-esc="statusLabel"/>
+                <span class="o_shop_stock_widget_value">
+                    <t t-esc="quantity"/>
+                </span>
+            </div>
+            <div class="o_shop_stock_widget_bar" aria-hidden="true">
+                <span t-att-style="'width: ' + progressWidth"/>
+            </div>
+            <input t-if="!props.readonly" class="form-control o_shop_stock_widget_input"
+                   type="number"
+                   min="0"
+                   step="1"
+                   t-att-value="quantity"
+                   t-on-input="onQuantityInput"/>
+        </div>
+    </t>
+</template>

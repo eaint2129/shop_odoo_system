@@ -4,7 +4,7 @@ import { registry } from "@web/core/registry";
 import { standardFieldProps } from "@web/views/fields/standard_field_props";
 
 export class StockStockWidget extends Component {
-    static template = "";
+    static template = "shop_stock_widget.ShopStockWidget";
     static props = {
         ...standardFieldProps,
     };
@@ -46,4 +46,4 @@ export const shopStockWidget = {
     supportedTypes: ["float","integer"],
 };
 
-registry.category("fields").add("shop_stock_badge"),shopStockWidget);
+registry.category("fields").add("shop_stock_badge",shopStockWidget);
